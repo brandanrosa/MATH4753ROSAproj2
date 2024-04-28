@@ -13,3 +13,7 @@ URL: https://github.com/brandanrosa/MATH4753ROSAproj2
 BugReports: https://github.com/brandanrosa/MATH4753ROSAproj2/issues
 Depends: 
     R (>= 2.10)
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
