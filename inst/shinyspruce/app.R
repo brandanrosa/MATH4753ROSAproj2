@@ -1,9 +1,9 @@
 library(shiny)
 library(purrr)
 library(rootSolve)
+library(MATH4753ROSAproj2)
 
-spruce.df = read.csv("SPRUCE.csv")
-
+spruce.df <- spruce
 d = spruce.df$BHDiameter
 
 coeff2 <- function(xk){
@@ -17,7 +17,18 @@ coeff2 <- function(xk){
   coef(lmp)
 }
 
-myf3 = function(x, xk, coef){
+rsq = function(xk,data){
+  df=within(data, X<-(BHDiameter-xk)*(BHDiameter>xk))
+  lmp=lm(Height ~ BHDiameter + X, data=df)
+  tmp = summary(lmp)
+  tmp$r.squared
+}
+
+rsqdash = function(xk,h,data) {
+  (rsq((xk+h/2),data)-rsq((xk-h/2),data))/h
+}
+
+myf = function(x, xk, coef){
   coef[1]+coef[2]*(x) + coef[3]*(x-xk)*(x-xk>0)
 }
 
@@ -31,7 +42,7 @@ ploty <- function(xk) {
                       main="Piecewise Regression"))
 
   cf <- coeff2(xk)
-  curve(myf3(x, xk, coef = cf), add = TRUE, lwd=3, col="darkgreen")
+  curve(myf(x, xk, coef = cf), add = TRUE, lwd=3, col="darkgreen")
 }
 ##############################################################################
 
