@@ -1,0 +1,93 @@
+---
+title: "Project 2 - Regression"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Project 2 - Regression}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(MATH4753ROSAproj2)
+```
+
+# Introduction
+
+This package contains functions to perform regression analysis; in this case, both SLR and Piecewise Regression. Below are examples of the functions. There is also a shiny app which may be called with a function as well.
+
+# The Function `myciplot`
+
+This function performs a SLR analysis on the `lm()` of data set and produces a histogram, a residual diagnostic plot, and a named list with everything you could ever wish for to tickle an regression fancy one might have.
+
+```{r, fig.align = "center", fig.width=7, fig.height=5}
+ylm <- lm(PIPE ~ GUESS, data = dow)
+
+myciplot(x = ylm, alpha = 0.05, f = 0.6)
+```
+
+# The Function `myknot`
+
+This function helps us in finding the $x_k$ which will maximize $R^2$. It produces an $R^2$ value. We use this function again to find a better estimate than what human eyes can estimate.
+
+```{r}
+myknot(x_k = 17, x = spruce.df$BHDiameter, y = spruce.df$Height, data = spruce.df)
+```
+
+Based on this $x_k$, almost $77 \%$ of the variation can be explained by the explanatory variable `BHDiameter`. I think we can do better!
+
+```{r}
+diam <- spruce.df$BHDiameter
+  height <- spruce.df$Height
+  
+  x <- seq(min(diam), max(diam), length = 1000)
+  y <- vector(mode = "numeric", length = 1000)
+  
+  for(i in 1:1000){
+    y[i] <- myknot(x[i], x = spruce.df$BHDiameter, y = spruce.df$Height, data=spruce.df)
+  }
+  
+  nmax <- which.max(y)
+  
+  plot(x, y, type = "l",lwd = 2, col = "blue", ylab = "Rsquared", xlab = "xk", main = "Rsquared ~ xk")
+  abline(v = x[nmax], lwd = 3, col = "maroon")
+  text(x = x[nmax] - 0.5, 
+       y = 0.68, 
+       srt=90, 
+       paste0(round(x[nmax], 4)))
+  x[nmax]
+```
+
+Here we have a wonky plot, but it displays where the maximum $R^2$ is and returns the corresponding $x_k$. I think we can do better!
+
+```{r}
+optimize(myknot,
+         interval = c(15,20),
+         x = spruce.df$BHDiameter,
+         y = spruce.df$Height,
+         maximum = TRUE)
+```
+
+Using the `optimize()` function produced slightly different results. It turns out this these values are more accurate for the model! 
+
+> NOTE: The above statment can be justfied using the `segmented()` function from the `segmented` package in `R` (calculation omitted).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
