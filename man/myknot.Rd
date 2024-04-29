@@ -4,21 +4,23 @@
 \alias{myknot}
 \title{myknot}
 \usage{
-myknot(xk, x, y)
+myknot(x_k, x, y, data)
 }
 \arguments{
-\item{xk}{chosen knot value}
+\item{x_k}{knot value}
 
 \item{x}{explanatory variable}
 
 \item{y}{response variable}
+
+\item{data}{data frame}
 }
 \value{
-`Rsquared` value
+`r.squared` from the give knot value `x_k`
 }
 \description{
-Calculates the `Rsquared` value for a given `xk`
+Calculates `r.squared` from the give knot value `x_k`
 }
 \examples{
-\dontrun{myknot(18,x,y)}
+\dontrun{myknot(17, x=x, y=y, data=spruce.df)}
 }

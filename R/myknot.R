@@ -1,18 +1,25 @@
 #' myknot
 #'
-#' Calculates the `Rsquared` value for a given `xk`
+#' Calculates `r.squared` from the give knot value `x_k`
 #'
-#' @param xk chosen knot value
+#' @param x_k knot value
 #' @param x explanatory variable
 #' @param y response variable
+#' @param data data frame
 #'
-#' @return `Rsquared` value
+#' @return `r.squared` from the give knot value `x_k`
+#'
+#' @importFrom stats lm
+#'
 #' @export
 #'
-#' @examples \dontrun{myknot(18,x,y)}
-myknot = function(xk, x, y){
-  df = within(spruce.df, X<-(BHDiameter-xk)*(BHDiameter>xk))
-  lmp = lm(Height ~ BHDiameter + X, data=df)
+#' @examples \dontrun{myknot(17, x=x, y=y, data=spruce.df)}
+myknot <- function(x_k, x, y, data){
+  df=within(data, {
+    X<-(x-x_k)*(x>x_k)
+  }
+  )
+  lmp=lm(y ~ x + X, data=df)
   tmp = summary(lmp)
   tmp$r.squared
 }

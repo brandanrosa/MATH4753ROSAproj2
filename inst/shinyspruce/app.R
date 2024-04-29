@@ -3,7 +3,6 @@ library(purrr)
 library(rootSolve)
 library(MATH4753ROSAproj2)
 
-spruce.df <- spruce
 d = spruce.df$BHDiameter
 
 coeff2 <- function(xk){
@@ -48,6 +47,7 @@ ploty <- function(xk) {
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
+  theme = bslib::bs_theme(bootswatch = "darkly"),
 
   # title
   titlePanel("Piecewise Regression Analysis"),

@@ -7,6 +7,11 @@
 #' @param ... passes arguments to additional functions
 #'
 #' @return A histogram, a residual diagnostic plot, and a named list with everyting you could ever wish for
+#'
+#' @importFrom stats qchisq confint rnorm sd dnorm lowess
+#' @importFrom graphics hist plot curve lines
+#' @importFrom grDevices rgb
+#'
 #' @export
 #'
 #' @examples \dontrun{myciplot(x=ylm, alpha=0.05)}
@@ -19,13 +24,12 @@ myciplot <- function(x, alpha=0.05, ...) {
   bh1 <- x$coefficients[2]
   bh1
 
-  sig2 <- smx$sigma^2
-  sig2
+  a <- smx$sigma
+  sig2 <- a^2
 
   mycisig2 <- function(x, alpha=0.05) { # x = ylm
     n = length(x$residuals)
 
-    sig2 <- sigma(x)^2
     L <- (n-2) * sig2 / qchisq(alpha/2, df = n-2, lower.tail = FALSE)
     U <- (n-2) * sig2 / qchisq(1-alpha/2, df = n-2, lower.tail = FALSE)
     ci <- c(L,U)
