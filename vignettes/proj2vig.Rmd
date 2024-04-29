@@ -78,16 +78,9 @@ Using the `optimize()` function produced slightly different results. It turns ou
 
 > NOTE: The above statment can be justfied using the `segmented()` function from the `segmented` package in `R` (calculation omitted).
 
+# Shiny App
 
+Accessing the Shiny App in the package, you can see the data plotted in an interactive space. To view this app, run the following code in an active R session:
 
-
-
-
-
-
-
-
-
-
-
+`shiny::runGitHub(repo = "MATH4753ROSAproj2", username = "brandanrosa", subdir = "inst/shinyspruce")`
 

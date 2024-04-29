@@ -6,7 +6,7 @@
 #' @param alpha alpha value
 #' @param ... passes arguments to additional functions
 #'
-#' @return A histogram, a residual diagnostic plot, and a named list with everyting you could ever wish for
+#' @return A histogram, a residual diagnostic plot, and a named list with everything you could ever wish for
 #'
 #' @importFrom stats qchisq confint rnorm sd dnorm lowess
 #' @importFrom graphics hist plot curve lines

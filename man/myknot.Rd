@@ -4,7 +4,7 @@
 \alias{myknot}
 \title{myknot}
 \usage{
-myknot(x_k, x, y, data)
+myknot(x_k, x, y, data = spruce.df)
 }
 \arguments{
 \item{x_k}{knot value}

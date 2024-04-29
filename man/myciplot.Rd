@@ -14,7 +14,7 @@ myciplot(x, alpha = 0.05, ...)
 \item{...}{passes arguments to additional functions}
 }
 \value{
-A histogram, a residual diagnostic plot, and a named list with everyting you could ever wish for
+A histogram, a residual diagnostic plot, and a named list with everything you could ever wish for
 }
 \description{
 This function performs a SLR analysis on the `lm()` of data set
