@@ -4,7 +4,7 @@
 \alias{myknot}
 \title{myknot}
 \usage{
-myknot(x_k, x, y, data = spruce.df)
+myknot(x_k, x, y, data)
 }
 \arguments{
 \item{x_k}{knot value}
@@ -22,5 +22,5 @@ myknot(x_k, x, y, data = spruce.df)
 Calculates `r.squared` from the give knot value `x_k`
 }
 \examples{
-\dontrun{myknot(17, x=x, y=y, data=spruce.df)}
+\dontrun{myknot(17, x=x, y=y, data)}
 }

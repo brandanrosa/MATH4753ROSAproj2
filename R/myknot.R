@@ -13,8 +13,8 @@
 #'
 #' @export
 #'
-#' @examples \dontrun{myknot(17, x=x, y=y, data=spruce.df)}
-myknot <- function(x_k, x, y, data=spruce.df){
+#' @examples \dontrun{myknot(17, x=x, y=y, data)}
+myknot <- function(x_k, x, y, data){
   df=within(data, {
     X<-(x-x_k)*(x>x_k)
   }

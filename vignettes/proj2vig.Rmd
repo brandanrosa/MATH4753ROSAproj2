@@ -42,7 +42,7 @@ myknot(x_k = 17, x = spruce.df$BHDiameter, y = spruce.df$Height, data = spruce.d
 
 Based on this $x_k$, almost $77 \%$ of the variation can be explained by the explanatory variable `BHDiameter`. I think we can do better!
 
-```{r}
+```{r, fig.align = "center", fig.width=7, fig.height=5}
 diam <- spruce.df$BHDiameter
   height <- spruce.df$Height
   
@@ -64,19 +64,7 @@ diam <- spruce.df$BHDiameter
   x[nmax]
 ```
 
-Here we have a wonky plot, but it displays where the maximum $R^2$ is and returns the corresponding $x_k$. I think we can do better!
-
-```{r}
-optimize(myknot,
-         interval = c(15,20),
-         x = spruce.df$BHDiameter,
-         y = spruce.df$Height,
-         maximum = TRUE)
-```
-
-Using the `optimize()` function produced slightly different results. It turns out this these values are more accurate for the model! 
-
-> NOTE: The above statment can be justfied using the `segmented()` function from the `segmented` package in `R` (calculation omitted).
+Here we have a wonky plot, but it displays where the maximum $R^2$ is and returns the corresponding $x_k$.
 
 # Shiny App
 
